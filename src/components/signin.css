@@ -1,0 +1,321 @@
+.signin-page {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  background: #f6f3ec;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+/* ── Left brand panel ── */
+.signin-brand {
+  display: none;
+  width: 44%;
+  position: relative;
+  background: #1f2421;
+  color: #f6f3ec;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 3rem;
+  overflow: hidden;
+}
+
+.signin-brand-glow {
+  position: absolute;
+  inset: 0;
+  opacity: 0.15;
+  background-image:
+    radial-gradient(circle at 20% 20%, #c97b4a 0%, transparent 35%),
+    radial-gradient(circle at 80% 70%, #5e7c6e 0%, transparent 40%);
+}
+
+.signin-brand-top,
+.signin-brand-mid,
+.signin-brand-bottom {
+  position: relative;
+  z-index: 1;
+}
+
+.signin-brand-top {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.signin-logo {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background: #e8a020;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  color: #1f2421;
+  font-weight: bold;
+}
+
+.signin-logo-text {
+  font-size: 1.25rem;
+  letter-spacing: 0.05em;
+  font-weight: 700;
+  color: #f6f3ec;
+}
+
+.signin-logo-text.dark {
+  color: #1f2421;
+}
+
+.signin-brand-mid {
+  max-width: 24rem;
+}
+
+.signin-headline {
+  font-size: 2rem;
+  line-height: 1.3;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.signin-subtext {
+  color: #c9c5bb;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.signin-brand-bottom {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  color: #c9c5bb;
+  font-size: 0.75rem;
+}
+
+.signin-divider {
+  height: 1px;
+  flex: 1;
+  background: #3a413c;
+}
+
+/* ── Right form panel ── */
+.signin-form-wrap {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+}
+
+.signin-form-inner {
+  width: 100%;
+  max-width: 24rem;
+}
+
+.signin-logo-mobile {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.signin-title {
+  font-size: 1.875rem;
+  color: #1f2421;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.signin-switch {
+  color: #6b6a65;
+  font-size: 0.875rem;
+  margin-bottom: 2rem;
+}
+
+.signin-switch a {
+  color: #e8a020;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.signin-switch a:hover {
+  text-decoration: underline;
+}
+
+.signin-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #6b6a65;
+  margin-bottom: 0.5rem;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  background: #ffffff;
+  border: 1px solid #e4e0d6;
+  color: #1f2421;
+  font-size: 0.95rem;
+  outline: none;
+  transition: box-shadow 0.15s, border-color 0.15s;
+  box-sizing: border-box;
+}
+
+.form-group input::placeholder {
+  color: #b7b3a8;
+}
+
+.form-group input:focus {
+  border-color: #e8a020;
+  box-shadow: 0 0 0 3px rgba(232, 160, 32, 0.18);
+}
+
+.form-group input.error {
+  border-color: #c0524a;
+}
+
+.field-error {
+  margin-top: 0.4rem;
+  font-size: 0.75rem;
+  color: #c0524a;
+}
+
+/* Password row with "Forgot password?" inline */
+.password-label-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.password-label-row label {
+  margin-bottom: 0;
+}
+
+.forgot-link {
+  background: none;
+  border: none;
+  color: #e8a020;
+  font-size: 0.78rem;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 0;
+  text-decoration: none;
+}
+
+.forgot-link:hover {
+  text-decoration: underline;
+}
+
+.password-field {
+  position: relative;
+}
+
+.password-field input {
+  padding-right: 3.5rem;
+}
+
+.toggle-password {
+  position: absolute;
+  right: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: #6b6a65;
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0.25rem;
+}
+
+.toggle-password:hover {
+  color: #1f2421;
+}
+
+.submit-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: #1f2421;
+  color: #f6f3ec;
+  padding: 0.85rem;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.submit-btn:hover {
+  background: #2c332e;
+}
+
+/* Back link button */
+.signin-back-link {
+  background: none;
+  border: none;
+  color: #6b6a65;
+  font-size: 0.85rem;
+  cursor: pointer;
+  padding: 0;
+  text-align: left;
+  margin-top: 0.25rem;
+}
+
+.signin-back-link:hover {
+  color: #1f2421;
+  text-decoration: underline;
+}
+
+/* ── Success state ── */
+.signin-success {
+  padding: 3rem 0;
+}
+
+.signin-success-icon {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background: #5e7c6e;
+  color: #f6f3ec;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.signin-success-text {
+  color: #6b6a65;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.signin-success-email {
+  color: #1f2421;
+  font-weight: 600;
+}
+
+/* ── Responsive ── */
+@media (min-width: 1024px) {
+  .signin-brand {
+    display: flex;
+  }
+
+  .signin-logo-mobile {
+    display: none;
+  }
+}
