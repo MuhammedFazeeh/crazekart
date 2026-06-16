@@ -4,7 +4,7 @@ function About() {
       <h2>About Us</h2>
 
       <p>
-        We provide high-quality products with excellent customer service.
+        We provide quality products with excellent customer service.
       </p>
     </section>
   );
