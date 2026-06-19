@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import "./products.css";
+import "./Products.css";
 
 function Products() {
   const [products, setProducts] = useState([]);
