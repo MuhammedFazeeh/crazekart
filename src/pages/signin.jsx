@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
-import "./Signin.css";
+import "./signin.css";
 
 // Configure this once — point it at your backend signin endpoint
 const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:5000/api";
