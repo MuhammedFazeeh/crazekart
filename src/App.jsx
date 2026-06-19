@@ -1,35 +1,59 @@
+import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
-import Navbar from "./components/Navbar";
-import Hero from "./components/Hero";
-import Products from "./components/Products";
 import About from "./components/about";
 import Contact from "./components/contact";
-import Footer from "./components/Footer";
-import Signup from "./components/Signup";
-import Signin from "./components/Signin";
+import Signup from "./pages/Signup";
+import Signin from "./pages/signin";
 import "./App.css";
+import Products from "./pages/Products";
+import AddProduct from "./pages/AddProduct";
+import Home from "./pages/Home";
+import Productdetails from "./pages/Productdetails";
+import ProtectedRoute from "./components/ProtectedRoute";
+import NotFound from "./pages/NotFound";
+import Navbar from "./components/Navbar";
 
-function Home() {
-  return (
-    <>
-      <Hero />
-      <Products />
-      <About />
-      <Contact />
-    </>
-  );
-}
+
+
+
 
 function App() {
+  
+
   return (
     <>
-      <Navbar />
+    <Navbar />
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/signup" element={<Signup />} />
-      <Route path="/signin" element={<Signin />} />
-      </Routes>
-      <Footer />
+  <Route path="/" element={<Home />} />
+  <Route path="/signup" element={<Signup />} />
+  <Route path="/signin" element={<Signin />} />
+  <Route path="/about" element={<About />} />
+  <Route path="/contact" element={<Contact />} />
+
+  {/* Public Routes */}
+  <Route path="/products" element={
+      <ProtectedRoute>
+        <Products />
+      </ProtectedRoute>
+    } />
+  <Route path="/Products/:id"  element={
+      <ProtectedRoute>
+        <Productdetails />
+      </ProtectedRoute>
+    } />
+
+  {/* Protected Routes */}
+  <Route
+    path="/addproduct"
+    element={
+      <ProtectedRoute>
+        <AddProduct />
+      </ProtectedRoute>
+    }
+  />
+
+  <Route path="*" element={<NotFound />} />
+</Routes>
     </>
   );
 }

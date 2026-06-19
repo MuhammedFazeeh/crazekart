@@ -117,6 +117,23 @@
   margin-bottom: 2.5rem;
 }
 
+/* Back to home link */
+.back-home-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: #6b6a65;
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-decoration: none;
+  margin-bottom: 2rem;
+  transition: color 0.15s;
+}
+
+.back-home-link:hover {
+  color: #e8a020;
+}
+
 .signin-title {
   font-size: 1.875rem;
   color: #1f2421;

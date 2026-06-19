@@ -1,11 +1,19 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import "./Signin.css";
 
 // Configure this once — point it at your backend signin endpoint
 const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:5000/api";
 
+// Where to send the user after a successful sign in, and how long to
+// show the success message before redirecting (ms).
+const POST_SIGNIN_REDIRECT = "/";
+const REDIRECT_DELAY_MS = 1500;
+
 export default function SigninPage() {
+  const navigate = useNavigate();
+
   const [showPassword, setShowPassword] = useState(false);
   const [form, setForm] = useState({ email: "", password: "" });
   const [errors, setErrors] = useState({});
@@ -18,6 +26,15 @@ export default function SigninPage() {
   const [forgotSent, setForgotSent] = useState(false);
   const [forgotError, setForgotError] = useState("");
   const [forgotLoading, setForgotLoading] = useState(false);
+
+  // Auto-redirect once sign in succeeds
+  useEffect(() => {
+    if (!submitted) return;
+    const timer = setTimeout(() => {
+      navigate(POST_SIGNIN_REDIRECT);
+    }, REDIRECT_DELAY_MS);
+    return () => clearTimeout(timer);
+  }, [submitted, navigate]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -49,7 +66,8 @@ export default function SigninPage() {
       });
 
       // Optional: store token / user data returned by the API
-      // localStorage.setItem("token", response.data.token);
+     localStorage.setItem("token", response.data.token);
+     navigate('/products');
 
       setSubmitted(true);
     } catch (err) {
@@ -133,6 +151,11 @@ export default function SigninPage() {
       {/* Right form panel */}
       <div className="signin-form-wrap">
         <div className="signin-form-inner">
+          {/* Back to home */}
+          <Link to="/" className="back-home-link">
+            <span aria-hidden="true">←</span> Back to home
+          </Link>
+
           {/* Mobile logo */}
           <div className="signin-logo-mobile">
             <div className="signin-logo">◆</div>

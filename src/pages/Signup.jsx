@@ -1,17 +1,34 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./Signup.css";
 
 // Configure this once — point it at your backend signup endpoint
 const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:5000/api";
 
+// Where to send the user after a successful signup, and how long to
+// show the success message before redirecting (ms).
+const POST_SIGNUP_REDIRECT = "/";
+const REDIRECT_DELAY_MS = 1500;
+
 export default function SignupPage() {
+  const navigate = useNavigate();
+
   const [showPassword, setShowPassword] = useState(false);
   const [form, setForm] = useState({ name: "", email: "", password: "" });
   const [errors, setErrors] = useState({});
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [serverError, setServerError] = useState("");
+
+  // Auto-redirect once signup succeeds
+  useEffect(() => {
+    if (!submitted) return;
+    const timer = setTimeout(() => {
+      navigate(POST_SIGNUP_REDIRECT);
+    }, REDIRECT_DELAY_MS);
+    return () => clearTimeout(timer);
+  }, [submitted, navigate]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -40,14 +57,17 @@ export default function SignupPage() {
     try {
       const nameParts = form.name.trim().split(" ");
       const response = await axios.post(`${API_BASE_URL}/auth/signup`, {
-  firstName: nameParts[0],
-  lastName: nameParts.slice(1).join(" "),
-  email: form.email,
-  password: form.password,
-    });
-    
+        firstName: nameParts[0],
+        lastName: nameParts.slice(1).join(" "),
+        email: form.email,
+        password: form.password,
+      });
+
+      console.log(response);
+
       // Optional: store token / user data returned by the API
-      // localStorage.setItem("token", response.data.token);
+      localStorage.setItem("token", response.data.token);
+      navigate('/products');
 
       setSubmitted(true);
     } catch (err) {
@@ -129,13 +149,14 @@ export default function SignupPage() {
                 <span className="signup-success-email">{form.email}</span>. Follow it
                 to activate your account.
               </p>
+              <p className="signup-success-text">Redirecting you now…</p>
             </div>
           ) : (
             <>
               <h1 className="signup-title">Create your account</h1>
               <p className="signup-switch">
-  Already have one? <a href="/signin">Sign in instead</a>
-</p>
+                Already have one? <a href="/signin">Sign in instead</a>
+              </p>
 
               {serverError && (
                 <div className="form-error-banner">{serverError}</div>
