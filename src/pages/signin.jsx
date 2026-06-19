@@ -4,7 +4,6 @@ import axios from "axios";
 import "./signin.css";
 
 // Configure this once — point it at your backend signin endpoint
-const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:5000/api";
 
 // Where to send the user after a successful sign in, and how long to
 // show the success message before redirecting (ms).
@@ -60,7 +59,7 @@ export default function SigninPage() {
     setServerError("");
 
     try {
-      const response = await axios.post(`${API_BASE_URL}/auth/signin`, {
+      const response = await axios.post(`${process.env.REACT_BASE_URL}/auth/signin`, {
         email: form.email,
         password: form.password,
       });
@@ -105,7 +104,7 @@ export default function SigninPage() {
     setForgotError("");
 
     try {
-      await axios.post(`${API_BASE_URL}/forgot-password`, {
+      await axios.post(`${process.env.REACT_BASE_URL}/auth/forgot-password`, {
         email: forgotEmail,
       });
       setForgotSent(true);

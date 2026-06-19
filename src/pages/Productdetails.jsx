@@ -17,7 +17,7 @@ function Productdetails() {
       setLoading(true);
       setError(false);
       const response = await axios.get(
-        `http://localhost:5000/api/products/getProduct/${id}`
+        `${process.env.REACT_BASE_URL}/products/getProduct/${id}`
       );
       // Handles either { product: {...} } or the product object directly
       setProduct(response.data.product || response.data);

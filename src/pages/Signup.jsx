@@ -4,7 +4,6 @@ import axios from "axios";
 import "./Signup.css";
 
 // Configure this once — point it at your backend signup endpoint
-const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:5000/api";
 
 // Where to send the user after a successful signup, and how long to
 // show the success message before redirecting (ms).
@@ -56,7 +55,7 @@ export default function SignupPage() {
 
     try {
       const nameParts = form.name.trim().split(" ");
-      const response = await axios.post(`${API_BASE_URL}/auth/signup`, {
+      const response = await axios.post(`${process.env.REACT_BASE_URL}/auth/signup`, {
         firstName: nameParts[0],
         lastName: nameParts.slice(1).join(" "),
         email: form.email,

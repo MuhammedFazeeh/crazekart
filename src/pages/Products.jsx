@@ -26,7 +26,7 @@ function Products() {
     try {
       setError(false);
       const response = await axios.get(
-        "http://localhost:5000/api/products/getAllProducts"
+        `${process.env.REACT_BASE_URL}/products/getAllProducts`
       );
       setProducts(response.data.products);
     } catch (err) {
@@ -59,7 +59,7 @@ function Products() {
     try {
       setDeletingId(productId);
       await axios.delete(
-        `http://localhost:5000/api/products/deleteProduct/${productId}`,
+        `${process.env.REACT_BASE_URL}/products/deleteProduct/${productId}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -89,7 +89,7 @@ function Products() {
     try {
       setDeletingAll(true);
       await axios.delete(
-        "http://localhost:5000/api/products/deleteAllProducts",
+        `${process.env.REACT_BASE_URL}/products/deleteAllProducts`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -134,7 +134,7 @@ function Products() {
     try {
       setSavingEdit(true);
       const response = await axios.put(
-        `http://localhost:5000/api/products/updateProduct/${productToEdit._id}`,
+        `${process.env.REACT_BASE_URL}/products/updateProduct/${productToEdit._id}`,
         {
           name: editForm.name,
           description: editForm.description,
