@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
-import "./ProductDetails.css";
+import "./Productdetails.css";
 
-function ProductDetails() {
+function Productdetails() {
   const { id } = useParams();
   console.log("Product ID from URL:", id);
   const navigate = useNavigate();
@@ -139,4 +139,4 @@ function ProductDetails() {
   );
 }
 
-export default ProductDetails;
+export default Productdetails;
